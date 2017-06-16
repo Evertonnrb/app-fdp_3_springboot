@@ -1,7 +1,5 @@
 package br.com.fdp.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,29 +8,26 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@SuppressWarnings("serial")
 @Entity
-public class Cliente implements Serializable{
-
+public class Cidade {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-	@Column(length = 30, nullable = false)
+	@Column(nullable = false, length = 30)
 	private String nome;
-
-	@Column(length = 30, nullable = false)
-	private String email;
-	
+	@Column(nullable = false, length = 2)
+	private String sigla;
 	@JoinColumn
 	@ManyToOne
 	private Estado estado;
-	
-	public Cliente(){}
-	
-	public Cliente(String nome, String email) {
+
+	public Cidade() {}
+
+	public Cidade(String nome, String sigla, Estado estado) {
+		super();
 		this.nome = nome;
-		this.email = email;
+		this.sigla = sigla;
+		this.estado = estado;
 	}
 
 	public long getId() {
@@ -51,16 +46,14 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getSigla() {
+		return sigla;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
-	
-	
-	
+
 	public Estado getEstado() {
 		return estado;
 	}
@@ -69,13 +62,6 @@ public class Cliente implements Serializable{
 		this.estado = estado;
 	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -92,11 +78,10 @@ public class Cliente implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Cidade other = (Cidade) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-	
-	
+
 }

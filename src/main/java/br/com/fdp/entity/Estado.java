@@ -7,32 +7,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @SuppressWarnings("serial")
 @Entity
-public class Cliente implements Serializable{
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+public class Estado implements Serializable {
+	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-	@Column(length = 30, nullable = false)
+	@Column(nullable = false, length=20)
 	private String nome;
+	@Column(nullable = false, length=2)
+	private String uf;
 
-	@Column(length = 30, nullable = false)
-	private String email;
-	
-	@JoinColumn
-	@ManyToOne
-	private Estado estado;
-	
-	public Cliente(){}
-	
-	public Cliente(String nome, String email) {
+	public Estado() {
+	}
+
+	public Estado(String nome, String uf) {
+		super();
 		this.nome = nome;
-		this.email = email;
+		this.uf = uf;
 	}
 
 	public long getId() {
@@ -51,31 +43,14 @@ public class Cliente implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	
-	
-	
-	public Estado getEstado() {
-		return estado;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return "";
-	}
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -92,7 +67,7 @@ public class Cliente implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Estado other = (Estado) obj;
 		if (id != other.id)
 			return false;
 		return true;

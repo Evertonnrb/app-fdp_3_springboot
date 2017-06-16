@@ -34,6 +34,6 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 	 * ignorando o findAll da interface	
 	 * @return
 	 */
-	@Query("SELECT c FROM Cliente c")
+	@Query("SELECT c FROM Cliente c ORDER BY c.email")
 	public List<Cliente>bucarTodos();
 }
